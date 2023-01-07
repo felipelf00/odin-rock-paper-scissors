@@ -10,35 +10,57 @@ function firstUpperRestLower(string) {
 function play(userChoice, computerChoice) {
     switch (userChoice) {
         case computerChoice:
-            return(`Draw. Both chose ${userChoice}`);
+            return "draw";
         case "Rock": 
             if (computerChoice === "Paper") {
-                return(`You lose. ${computerChoice} beats ${userChoice}.`);
+                return "computer";
             }
             if (computerChoice === "Scissors") {
-                return(`You win. ${userChoice} beats ${computerChoice}.`);
+                return "player";
             }
         case "Paper":
             if (computerChoice === "Scissors") {
-                return(`You lose. ${computerChoice} beats ${userChoice}.`);
+                return "computer";
             }
             if (computerChoice === "Rock") {
-                return(`You win. ${userChoice} beats ${computerChoice}.`);
+                return "player";
             }
         case "Scissors":
             if (computerChoice === "Rock") {
-                return(`You lose. ${computerChoice} beats ${userChoice}.`);
+                return "computer";
             }
             if (computerChoice === "Paper") {
-                return(`You win. ${userChoice} beats ${computerChoice}.`);
+                return "player";
             }
-        default:
-                return("Wrong input")
     }
 }
 
+function game () {
+    let playerChoice;
+    let playerScore = 0;
+    let computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        while (playerChoice != "Rock" && playerChoice != "Paper" && playerChoice != "Scissors") {
+            playerChoice = firstUpperRestLower(prompt("Chose Rock, Paper, Scissors: "));
+        }
+        let computerChoice = getComputerChoice();
+        let winner = play(playerChoice, computerChoice);
+        if (winner === "player") {
+            playerScore += 1;
+            alert(`${playerChoice} beats ${computerChoice}.\nYou won this round.\nPlayer: ${playerScore}\nComputer: ${computerScore}`);
+            playerChoice = "";
+        }
+        if (winner === "computer") {
+            computerScore += 1;
+            alert(`${computerChoice} beats ${playerChoice}.\nYou lost this round.\nPlayer: ${playerScore}\nComputer: ${computerScore}`);
+            playerChoice = "";
+        }
+        if (winner ==="draw") {
+            alert(`Draw. Both players chose ${playerChoice}`);
+            playerChoice = "";
+        }
+    }
+    return (`Final score:\nPlayer: ${playerScore} points\nComputer: ${computerScore} points`);
+}
 
-let choice = firstUpperRestLower(prompt("Chose Rock, Paper, Scissors:"));
-
-console.log(play(choice, getComputerChoice()));
-
+alert(game());
