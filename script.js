@@ -64,3 +64,5 @@ function game () {
 }
 
 alert(game());
+
+//teste: esse comentário só deve aparecer na branch secundária.
