@@ -35,34 +35,51 @@ function play(userChoice, computerChoice) {
     }
 }
 
-function game () {
-    let playerChoice;
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-        while (playerChoice != "Rock" && playerChoice != "Paper" && playerChoice != "Scissors") {
-            playerChoice = firstUpperRestLower(prompt("Chose Rock, Paper, Scissors: "));
-        }
-        let computerChoice = getComputerChoice();
-        let winner = play(playerChoice, computerChoice);
-        if (winner === "player") {
-            playerScore += 1;
-            alert(`${playerChoice} beats ${computerChoice}.\nYou won this round.\nPlayer: ${playerScore}\nComputer: ${computerScore}`);
-            playerChoice = "";
-        }
-        if (winner === "computer") {
-            computerScore += 1;
-            alert(`${computerChoice} beats ${playerChoice}.\nYou lost this round.\nPlayer: ${playerScore}\nComputer: ${computerScore}`);
-            playerChoice = "";
-        }
-        if (winner ==="draw") {
-            alert(`Draw. Both players chose ${playerChoice}`);
-            playerChoice = "";
-        }
-    }
-    return (`Final score:\nPlayer: ${playerScore} points\nComputer: ${computerScore} points`);
+function printResult (winner) {
+    const results = document.querySelector('#results');
+    results.textContent = `This round winner: ${winner}  
+    Player: ${playerScore} points
+    Computer: ${computerScore} points`;
 }
 
-alert(game());
+let playerScore = 0;
+let computerScore = 0; 
+const results = document.querySelector('#results');
+printResult("");
+//results.textContent = `Player: ${playerScore} points
+//Computer: ${computerScore} points`;
 
-//teste: esse comentário só deve aparecer na branch secundária.
+const btnRock = document.querySelector('#rock');
+btnRock.addEventListener('click', () => {
+    const thisRound = play ('Rock', getComputerChoice());
+    if (thisRound === 'computer') {
+        computerScore += 1;
+    }
+    if (thisRound ==="player") { 
+        playerScore += 1 };
+    printResult(thisRound);
+    });
+
+
+const btnPaper = document.querySelector('#paper');
+btnPaper.addEventListener('click', () => {
+    const thisRound = play ('Paper', getComputerChoice());
+    if (thisRound === 'computer') {
+        computerScore += 1;
+    }
+    if (thisRound ==="player") { 
+        playerScore += 1 };
+    printResult(thisRound);
+    });
+
+const btnScissors = document.querySelector('#scissors');
+btnScissors.addEventListener('click', () => {
+    const thisRound = play ('Scissors', getComputerChoice());
+    if (thisRound === 'computer') {
+        computerScore += 1;
+    }
+    if (thisRound ==="player") { 
+        playerScore += 1 };
+    printResult(thisRound);
+    });
+
