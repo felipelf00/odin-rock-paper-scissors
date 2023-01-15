@@ -3,6 +3,7 @@ function getComputerChoice() {
     return choice[Math.floor(Math.random()*3)];
 }
 
+// Not used:
 function firstUpperRestLower(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
@@ -35,7 +36,11 @@ function play(userChoice, computerChoice) {
     }
 }
 
-function printResult (winner) {
+function gameOver() {
+    if (playerScore >= 5 || computerScore >= 5) return true;
+}
+
+function printResult (winner, playerChoice, computerChoice) {
     const thisRound = document.querySelector('#this-round');
     const pScore = document.querySelector('#player-score');
     const cScore = document.querySelector('#computer-score');
@@ -43,7 +48,7 @@ function printResult (winner) {
     pScore.textContent = "Player: " + playerScore + " points";
     cScore.textContent = "Computer: " + computerScore + " points";
 
-    if (playerScore >= 5 || computerScore >= 5) {
+    if (gameOver()) {
         let champ = "";
         playerScore >= 5 ? champ = "Player" : champ = "Computer";
         const body = document.querySelector('body');
@@ -58,9 +63,6 @@ function printResult (winner) {
         body.appendChild(restart);
     }
 }
-let playerScore = 0;
-let computerScore = 0; 
-
 function freshStart () {
     playerScore = 0;
     computerScore = 0;
@@ -74,11 +76,15 @@ function freshStart () {
         })
     }
 }
+
+let playerScore = 0;
+let computerScore = 0; 
 freshStart();
 
 
 const btnRock = document.querySelector('#rock');
 btnRock.addEventListener('click', () => {
+    if (gameOver()) return;
     const thisRound = play ('Rock', getComputerChoice());
     if (thisRound === 'computer') {
         computerScore += 1;
@@ -91,6 +97,7 @@ btnRock.addEventListener('click', () => {
 
 const btnPaper = document.querySelector('#paper');
 btnPaper.addEventListener('click', () => {
+    if (gameOver()) return;
     const thisRound = play ('Paper', getComputerChoice());
     if (thisRound === 'computer') {
         computerScore += 1;
@@ -102,6 +109,7 @@ btnPaper.addEventListener('click', () => {
 
 const btnScissors = document.querySelector('#scissors');
 btnScissors.addEventListener('click', () => {
+    if (gameOver()) return;
     const thisRound = play ('Scissors', getComputerChoice());
     if (thisRound === 'computer') {
         computerScore += 1;
