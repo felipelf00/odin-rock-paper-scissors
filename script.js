@@ -36,18 +36,18 @@ function play(userChoice, computerChoice) {
 }
 
 function printResult (winner) {
-    const results = document.querySelector('#results');
-    results.textContent = `This round winner: ${winner}  
-    Player: ${playerScore} points
-    Computer: ${computerScore} points`;
+    const thisRound = document.querySelector('#this-round');
+    const pScore = document.querySelector('#player-score');
+    const cScore = document.querySelector('#computer-score');
+    thisRound.textContent = "This round winner: " + winner;
+    pScore.textContent = "Player: " + playerScore + " points";
+    cScore.textContent = "Computer: " + computerScore + " points";
 }
 
 let playerScore = 0;
 let computerScore = 0; 
-const results = document.querySelector('#results');
 printResult("");
-//results.textContent = `Player: ${playerScore} points
-//Computer: ${computerScore} points`;
+
 
 const btnRock = document.querySelector('#rock');
 btnRock.addEventListener('click', () => {
