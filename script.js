@@ -42,11 +42,39 @@ function printResult (winner) {
     thisRound.textContent = "This round winner: " + winner;
     pScore.textContent = "Player: " + playerScore + " points";
     cScore.textContent = "Computer: " + computerScore + " points";
-}
 
+    if (playerScore >= 5 || computerScore >= 5) {
+        let champ = "";
+        playerScore >= 5 ? champ = "Player" : champ = "Computer";
+        const body = document.querySelector('body');
+        const finalScore = document.createElement('div');
+        const restart = document.createElement('button');
+        finalScore.classList.add('final');
+        restart.classList.add('final');
+        restart.textContent = 'Play again';
+        restart.onclick = () => freshStart(); 
+        finalScore.textContent = `Game finished. ${champ} wins.` 
+        body.appendChild(finalScore);
+        body.appendChild(restart);
+    }
+}
 let playerScore = 0;
 let computerScore = 0; 
-printResult("");
+
+function freshStart () {
+    playerScore = 0;
+    computerScore = 0;
+    printResult("");
+
+    const final = document.querySelectorAll('.final');
+    if(final) {
+        final.forEach( final => {
+            const body = document.querySelector('body');
+            body.removeChild(final);
+        })
+    }
+}
+freshStart();
 
 
 const btnRock = document.querySelector('#rock');
