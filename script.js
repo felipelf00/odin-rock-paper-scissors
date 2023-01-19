@@ -2,12 +2,6 @@ function getComputerChoice() {
     const choice = ["Rock", "Paper", "Scissors"];
     return choice[Math.floor(Math.random()*3)];
 }
-
-// Not used:
-function firstUpperRestLower(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-}
-
 function play(userChoice, computerChoice) {
     switch (userChoice) {
         case computerChoice:
@@ -48,6 +42,7 @@ function gameOver() {
     const restart = document.createElement('button');
     finalScore.classList.add('final');
     restart.classList.add('final');
+    restart.id = 'restart-button';
     restart.textContent = 'Play again';
     restart.onclick = () => freshStart(); 
     finalScore.textContent = `Game finished. ${champ} wins.` 
@@ -90,7 +85,7 @@ function freshStart () {
     const arenaDisplay = document.querySelector("#arena");
     arenaDisplay.textContent = "";
     const thisRound = document.querySelector('#this-round');
-    thisRound.textContent = "";
+    thisRound.textContent = "Make your choice:";
 
     const pScore = document.querySelector('#player-score');
     const cScore = document.querySelector('#computer-score');
