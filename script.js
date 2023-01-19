@@ -52,7 +52,7 @@ function gameOver() {
 
 function printCurrentPlay (winner, playerChoice, computerChoice) {
     if (gameStarted) {
-    const arenaDisplay = document.querySelector("#arena");
+    const arenaDisplay = document.querySelector("#arena-text");
     arenaDisplay.innerHTML = `Player chose ${playerChoice}<br>Computer chose ${computerChoice}`;
     const thisRound = document.querySelector('#this-round');
     if (winner === "Draw") {
@@ -82,7 +82,7 @@ function freshStart () {
     playerScore = 0;
     computerScore = 0;
     gameStarted = false;
-    const arenaDisplay = document.querySelector("#arena");
+    const arenaDisplay = document.querySelector("#arena-text");
     arenaDisplay.textContent = "";
     const thisRound = document.querySelector('#this-round');
     thisRound.textContent = "Make your choice:";

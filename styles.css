@@ -1,17 +1,22 @@
 body {
     background: #101010;
-    color: whitesmoke;
+    color: #E0E0E0;
     text-align: center;  
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between; */
+    font-family: "Fredoka One", sans-serif;
+
 }
+
+
 
 #arena {
     width: 300px;
     height: 300px;
-    border: 2px solid whitesmoke;
-    text-align: center;  
+    border: 2px solid #E0E0E0;
+    display: flex;
+    margin: auto;
+    border-radius: 10px;
+}
+#arena p {
     margin: auto;
 }
 
@@ -27,9 +32,23 @@ button {
     width: 80px;
     height: 80px;
     background: #101010;
-    color: whitesmoke;
-    border: 2px solid whitesmoke;
+    color: #E0E0E0;
+    border: 2px solid #E0E0E0;
+    border-radius: 10px;
     margin: 14px;
+    transition-duration: 500ms;
+    transition-property: background, color, box-shadow;
+    font-family: "Fredoka One";
+}
+
+button:hover {
+    background: #E0E0E0;
+    color: #101010;
+    box-shadow: 0px 0px 4px #E0E0E0;
+}
+
+button:active {
+    transform: scale(1.1);
 }
 
 #restart-button {
